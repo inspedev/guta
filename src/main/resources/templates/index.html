@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Облік Guta</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" type="text/css" th:href="@{css/styles.css}">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
+	</script>
+
+</head>
+<body>
+<div class="container-large" th:classappend="${logged} ? '' :  ' hidden'" id="content">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-8"><h2>Бригада № <b id="head"></b></h2></div>
+					<div class="col-sm-4" th:classappend="${logged} ? ' hidden' :  ''">
+						<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Додати запис</button>
+					</div>
+				</div>
+			</div>
+			<form th:action="@{add}" id="form" method="post">
+			<table class="table table-bordered">
+				<thead>
+				</thead>
+				<tbody>
+				<tr th:each="string : ${strings}" th:if="${string.get(0) != '' && string.get(0) != null && string.get(0).length() > 0}">
+					<td class="big" th:text="${string.get(0)}"></td>
+					<td class="big" th:text="${string.get(1)}"></td>
+					<td class="med" th:text="${string.get(2)}"></td>
+					<td th:text="${string.get(3)}"></td>
+					<td th:text="${string.get(4)}"></td>
+					<td th:text="${string.get(5)}"></td>
+					<td th:text="${string.get(6) != null ? string.get(6) : ''}"></td>
+					<td>
+						<a class="add" title="Зберегти" onclick="document.getElementById('form').submit()" data-toggle="tooltip" type="submit"><i class="material-icons">&#xE03B;</i></a>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+			</form>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="robot-1-name" th:value="${next.get(0)}">
+<input type="hidden" id="robot-1-value" th:value="${next.get(1)}">
+<input type="hidden" id="robot-2-name" th:value="${next.get(2)}">
+<input type="hidden" id="robot-2-value" th:value="${next.get(3)}">
+<input type="hidden" id="login-v">
+<input type="hidden" id="robot-v">
+<div class="login" th:classappend="${logged} ? ' hidden' :  ''" id="login">
+	<label>Номер бригади</label>
+	<select id="time">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+	</select>
+	<label>Робот</label>
+	<select id="robot">
+		<option value="1">1</option>
+		<option value="2">2</option>
+	</select>
+	<label>Пароль</label>
+	<input type="password" id="password">
+	<button onclick="login()" class="btn btn-success">Вхід</button>
+</div>
+</body>
+<script type="text/javascript" th:src="@{js/script.js}"></script>
+<script type="text/javascript" th:src="@{js/script2.js}"></script>
+<script type="text/javascript" th:src="@{js/script3.js}"></script>
+</html>
