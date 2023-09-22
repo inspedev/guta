@@ -1,4 +1,13 @@
 $(document).ready(function () {
+  let session = localStorage.getItem("sessionGuta");
+  if (session && session == 1) {
+    localStorage.setItem("sessionGuta", 0);
+    document.getElementById("login").classList.toggle("hidden");
+    document.getElementById("main-head").value = 'Режим перегляду';
+    document.getElementById("content").classList.toggle("hidden");
+    document.getElementById("button").classList.toggle("hidden");
+    setTimeout("location.reload(true);", 10000);
+  }
 });
 
 function login() {

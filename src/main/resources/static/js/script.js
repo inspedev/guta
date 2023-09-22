@@ -7,7 +7,7 @@ $(document).ready(function(){
     var index = $("table tbody tr:last-child").index();
     let robot_name = 'robot-' + document.getElementById("robot-v").value + "-name";
     let robot_weight = 'robot-' + document.getElementById("robot-v").value + "-value";
-    var row = '<tr>' +
+    var row = '<tr class="select">' +
       '<td><input type="text" class="form-control disabled" name="loginp" id="loginp" value="'+ document.getElementById("login-v").value+'"></td>' +
       '<td><input type="text" class="form-control disabled" name="namep" id="namep" value="'+ document.getElementById(robot_name).value+'"></td>' +
       '<td><select name="time"> <option value="6:00 - 14:00">6:00 - 14:00 </option> <option value="14:00 - 22:00">14:00 - 22:00</option> <option value="22:00 - 6:00">22:00 - 6:00</option> </select></td>' +
@@ -21,6 +21,7 @@ $(document).ready(function(){
     $("table").append(row);
     $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
     $('[data-toggle="tooltip"]').tooltip();
+    window.scrollTo(0, document.body.scrollHeight);
   });
   // Add row on add button click
   $(document).on("click", ".add", function(){
@@ -44,3 +45,8 @@ $(document).ready(function(){
     }*/
   });
 });
+
+function submitForm() {
+  localStorage.setItem("sessionGuta", 1);
+  document.getElementById('form').submit()
+}

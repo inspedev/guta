@@ -124,3 +124,12 @@ label {
 .hidden {
   display: none;
 }
+
+tbody tr:first-child td {
+  background-color: aliceblue;
+  font-weight: 700;
+}
+
+.select {
+  background-color: cornsilk;
+}
